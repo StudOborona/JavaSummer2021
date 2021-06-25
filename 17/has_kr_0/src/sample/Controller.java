@@ -22,42 +22,31 @@ public class Controller {
     @FXML
     private TextField text_here;
 
-    @FXML
-    void continu(ActionEvent event) {
 
-        int n = Integer.parseInt(text_here.getText().toString());
+
+    public static double continu(int n) {
         System.out.println(n);
-        double res = 1;
-        for(int i=2; i<=n; i++)
+        double res = 0;
+        double dev = 1;
+        for(double i=0; i<n; i++)
         {
-            res =res+ 1/i;
-            i++;
+            res=res+1/dev;
+            dev=dev*2;
         }
-        System.out.println(res);
-        String total2 = String.valueOf(res);
-        outpt.setText(total2);
+        return res;
+
     }
 
-    @Test
-    public void continu(javafx.event.ActionEvent actionEvent) {
 
-        //Result result = (Result) JUnitCore.runClasses(TestJunit.class);
+
+    public void display(javafx.event.ActionEvent actionEvent) {
 
         int n = Integer.parseInt(text_here.getText().toString());
-        System.out.println(n);
-        double res = 1;
-        for(int i=2; i<=n; i++)
-        {
 
-            res =res+2*i-1;
-        }
+        double res = continu(n);
+
         System.out.println(res);
         String total2 = String.valueOf(res);
         outpt.setText(total2);
-
-        int da = (int) res;
-        Assert.assertEquals(da,25);
-        Assert.assertEquals(da,9);
-        Assert.assertEquals(da,1);
     }
 }
