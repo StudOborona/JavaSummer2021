@@ -2,7 +2,7 @@ package sample;
 
 import java.awt.*;
 import java.util.ArrayList;
-
+import static org.junit.Assert.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
@@ -19,6 +19,7 @@ public class Controller {
     @FXML
     public void getDiv5(){
         resultField.setVisible(false);
+        ArrayList<Integer> resultList = new ArrayList<>();
         try {
             int firstNum = Integer.parseInt(textField.getText());
             int secondNum = Integer.parseInt(textField1.getText());
@@ -39,7 +40,7 @@ public class Controller {
             }
             else if (firstNum >= secondNum && firstNum >= 10 && secondNum >= 10){
                 resultField.clear();
-                ArrayList<Integer> resultList = new ArrayList<>();
+
                 for (int i = firstNum; i >= secondNum; i--){
                     if (i % 5 == 0){
                         resultList.add(i);
@@ -55,6 +56,7 @@ public class Controller {
                 }
                 textField.clear();
                 textField1.clear();
+
             }
             //проверка на однозначность числа и его положительность
             else if ((firstNum > 0 && firstNum < 10)  || (secondNum > 0 && secondNum < 10)){
@@ -75,12 +77,32 @@ public class Controller {
                 textField.clear();
                 textField1.clear();
             }
+            String listString = "";
+
+            for (Integer s : resultList)
+            {
+                listString += s + "\t";
+            }
+            System.out.println(listString);
+            assertEquals("20\t15\t10\t",listString);
         }
+
         catch (NumberFormatException exception){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Вы допустили ошибку ввода данных!");
             alert.showAndWait();
             textField.clear();
             textField1.clear();
+            String listString = "";
+
+            for (Integer s : resultList)
+            {
+                listString += s + "\t";
+            }
+            assertEquals("20\t15\t10\t",listString);
+
         }
+
     }
+
+
 }
